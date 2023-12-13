@@ -1,0 +1,8 @@
+<p>counter works! </p>
+<h3 id = "hc"> Count value is {{count}} </h3>
+<!--One way data binding-->
+<input type="number" value="{{count}}"/>
+<!--Two way data binding-->
+<input type="number" [(ngModel)] = "count"/>
+<!--Event Binding-->
+<button (click)="imcrementCount()">Increase</button>
