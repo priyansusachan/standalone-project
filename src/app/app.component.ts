@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, signal, computed } from "@angular/core";
 import { CounterComponent } from "./counter/counter.component";
 import {CommonModule} from "@angular/common"
 
@@ -17,6 +17,13 @@ import {CommonModule} from "@angular/common"
     <ul>
         <li *ngFor="let friend of friends">{{friend}}</li>
     </ul>
+    <h3>
+        First Name: {{fname()}} <br>
+        Last Name: {{lname()}}<br>
+        Full Name: {{fullName()}}
+        <button (click)="updateFname()">Change First Name</button> &nbsp;
+        <button (click)="updateLname()">Change Last Name</button>
+    </h3>
     <h4>Last line</h4>
     `,
     imports: [CounterComponent, CommonModule]
@@ -27,6 +34,18 @@ export class AppComponent{
     appCount = 1
     friends = ["First", "Second", "Third"]
 
+    fname = signal("Priyansu")
+    lname = signal("Sachan")
+    fullName = computed(() =>this.fname()+ this.lname())
+
+    updateFname(){
+        //this.fname = "Sarath"
+        this.fname.set("Sachin")
+    }
+    updateLname(){
+        //this.lname = "Tendulkar"
+        this.lname.set("Tendulkar")
+    }
     handleMyEvent(val:number)
     {
         this.appCount = val
